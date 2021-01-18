@@ -8,3 +8,4 @@ $ pip install fastapi-localization
 ```
 
 Examples how to [use](https://github.com/ikasymov/fastapi-localization-example)
+
