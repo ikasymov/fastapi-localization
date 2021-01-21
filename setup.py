@@ -6,7 +6,7 @@ def get_long_description():
         return f.read()
 
 setup(name='fastapi-localization',
-      version='0.1',
+      version='0.0a1.dev1',
       url='https://github.com/ikasymov/fastapi-localization',
       license='MIT',
       author='Ilgiz Kasymov',
