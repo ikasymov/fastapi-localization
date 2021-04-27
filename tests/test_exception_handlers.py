@@ -1,7 +1,10 @@
 import json
 
 import pytest
-from fastapi import Request
+from fastapi import (
+    Request,
+    status,
+)
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 from pydantic.error_wrappers import ValidationError
@@ -18,10 +21,13 @@ async def test_http_exception_handler(mocked_request, gettext_func):
     _ = gettext_func('ru')
     request: Request = mocked_request(dict())
     request.state.gettext = _
-    exc = HTTPException(detail=lazy_gettext('my error'), status_code=400)
+    exc = HTTPException(detail=lazy_gettext('my error'), status_code=status.HTTP_400_BAD_REQUEST)
 
     response = await http_exception_handler(request, exc)
-    expected_data = {'detail': 'моя ошибка'}
+    expected_data = {
+        'detail': 'моя ошибка',
+        'status_code': status.HTTP_400_BAD_REQUEST
+    }
     assert json.loads(response.body) == expected_data
 
 
@@ -38,9 +44,12 @@ async def test_validation_exception_handler(mocked_request, gettext_func):
         Model(a='snap')
 
     response = await validation_exception_handler(request, exc.value)
-    expected_data = {'detail': [
-        {'loc': ('a',),
-         'msg': 'значение не является числом',
-         'type': 'type_error.integer'}
-    ]}
+    expected_data = {
+        'detail': [
+            {'loc': ('a',),
+             'msg': 'значение не является числом',
+             'type': 'type_error.integer'}
+        ],
+        'status_code': status.HTTP_200_OK,
+    }
     assert response.original_content == expected_data

@@ -1,6 +1,7 @@
 import typing
 import gettext
 
+from fastapi import status
 from fastapi.responses import JSONResponse
 
 from fastapi_localization.localization import prepare_content_to_translate
@@ -13,6 +14,7 @@ class TranslateJsonResponse(JSONResponse):
     def __init__(self, content: typing.Any = None, *args, **kwargs):
         self.original_content = content
         super().__init__(content, *args, **kwargs)
+        self.status_code = content.get('status_code', status.HTTP_200_OK)
 
     def translate_content(self, _: gettext.GNUTranslations.gettext):
         content = prepare_content_to_translate(
