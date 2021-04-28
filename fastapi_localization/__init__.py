@@ -14,3 +14,6 @@ __all__ = ["SystemLocalizationMiddleware", "http_exception_handler",
            "validation_exception_handler", "LocalizationRoute",
            "TranslateJsonResponse", "lazy_gettext",
            "LazyString", "TranslatableStringField"]
+
+
+__version__ = '0.0a1.dev2'

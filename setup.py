@@ -1,12 +1,18 @@
-from setuptools import setup, find_packages
+from setuptools import (
+      setup,
+      find_packages,
+)
+
+import fastapi_localization
 
 
 def get_long_description():
     with open("README.md", "r", encoding="utf8") as f:
         return f.read()
 
+
 setup(name='fastapi-localization',
-      version='0.0a1.dev1',
+      version=fastapi_localization.__version__,
       url='https://github.com/ikasymov/fastapi-localization',
       license='MIT',
       author='Ilgiz Kasymov',
