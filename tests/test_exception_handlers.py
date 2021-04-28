@@ -1,7 +1,10 @@
 import json
 
 import pytest
-from fastapi import Request
+from fastapi import (
+    Request,
+    status,
+)
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 from pydantic.error_wrappers import ValidationError
@@ -18,11 +21,12 @@ async def test_http_exception_handler(mocked_request, gettext_func):
     _ = gettext_func('ru')
     request: Request = mocked_request(dict())
     request.state.gettext = _
-    exc = HTTPException(detail=lazy_gettext('my error'), status_code=400)
+    exc = HTTPException(detail=lazy_gettext('my error'), status_code=status.HTTP_400_BAD_REQUEST)
 
     response = await http_exception_handler(request, exc)
     expected_data = {'detail': 'моя ошибка'}
     assert json.loads(response.body) == expected_data
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.asyncio
@@ -44,3 +48,4 @@ async def test_validation_exception_handler(mocked_request, gettext_func):
          'type': 'type_error.integer'}
     ]}
     assert response.original_content == expected_data
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
