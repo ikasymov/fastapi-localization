@@ -15,11 +15,9 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: tests/test_response.py:13
 msgid "my message"
 msgstr "Мое сообщение"
 
-#: tests/test_route.py:23
 msgid "My page"
 msgstr "Моя страница"
 
@@ -28,3 +26,6 @@ msgstr "моя ошибка"
 
 msgid "value is not a valid integer"
 msgstr "значение не является числом"
+
+msgid "This message for {name}"
+msgstr "Это сообщение для {name}"

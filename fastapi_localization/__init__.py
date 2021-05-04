@@ -16,4 +16,4 @@ __all__ = ["SystemLocalizationMiddleware", "http_exception_handler",
            "LazyString", "TranslatableStringField"]
 
 
-__version__ = '0.0a1.dev2'
+__version__ = '0.0a1.dev3'

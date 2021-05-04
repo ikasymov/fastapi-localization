@@ -16,7 +16,7 @@ class AsyncMock(MagicMock):
         return async_magic().__await__()
 
 
-@pytest.fixture()
+@pytest.fixture
 def mocked_request() -> Callable:
 
     def get_request(headers) -> Request:
@@ -26,7 +26,7 @@ def mocked_request() -> Callable:
     return get_request
 
 
-@pytest.fixture()
+@pytest.fixture
 def gettext_func():
 
     def get_gettext(language_code):

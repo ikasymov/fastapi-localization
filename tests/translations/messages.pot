@@ -15,11 +15,9 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: tests/test_response.py:13
 msgid "my message"
 msgstr ""
 
-#: tests/test_route.py:23
 msgid "My page"
 msgstr ""
 

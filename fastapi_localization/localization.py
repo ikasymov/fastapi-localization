@@ -5,8 +5,20 @@ import typing
 class LazyString(str):
     """
     LazyString object to localization
+
+    Example:
+        lazy = LazyString('my string')
+        TranslateJsonResponse(lazy)
+
+    Or if you want with dynamic values:
+        lazy = LazyString('My name is {name}', name='Edvard')
+        TranslateJsonResponse(lazy)
     """
-    pass
+
+    def __new__(cls, value, **kwargs):
+        obj = super().__new__(cls, value)
+        obj.named_placeholders = kwargs
+        return obj
 
 
 class TranslatableStringField(LazyString):
@@ -24,11 +36,19 @@ class TranslatableStringField(LazyString):
         return cls(v)
 
 
-def lazy_gettext(string: str):
+def lazy_gettext(string: str, **kwargs):
     """
     lazy gettext wrapper.
+
+    Example:
+        lazy = lazy_gettext('my string')
+        TranslateJsonResponse(lazy)
+
+    Or if you want with dynamic values:
+        lazy = lazy_gettext('My name is {name}', name='Edvard')
+        TranslateJsonResponse(lazy)
     """
-    return LazyString(string)
+    return LazyString(string, **kwargs)
 
 
 def prepare_content_to_translate(value: typing.Any, _: gettext.gettext):
@@ -36,7 +56,9 @@ def prepare_content_to_translate(value: typing.Any, _: gettext.gettext):
     Prepare data structure to localization
     """
     if isinstance(value, LazyString):
-        return str(_(value))
+        prepared_content = str(_(value))
+        return (prepared_content.format(**value.named_placeholders)
+                if value.named_placeholders else prepared_content)
     elif isinstance(value, dict):
         return {
             k: prepare_content_to_translate(
