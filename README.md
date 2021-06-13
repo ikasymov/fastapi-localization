@@ -1,4 +1,4 @@
-# fastapi_localization
+# fastapi_localization  [![Pytest Actions Status](https://github.com/ikasymov/fastapi-localization/workflows/pytest/badge.svg)](https://github.com/ikasymov/fastapi-localization/actions)
 
 **fastapi_localization** - provides a simple language localization from Accept-Language header in your application.
 
@@ -71,7 +71,7 @@ $ curl --location --request GET 'http://127.0.0.1:8000/country' \
 [{"code":"ru","title":"Russia"},{"code":"us","title":"USA"}]
 ```
 
-error validation 
+error validation
 
 ```python
 from pydantic import BaseModel, EmailStr
@@ -129,4 +129,3 @@ $ curl --location --request POST 'http://127.0.0.1:8000/input' \
 ```
 
 [Application](https://github.com/ikasymov/fastapi-localization-example) source code
-

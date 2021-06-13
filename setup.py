@@ -21,6 +21,7 @@ setup(
     description='Language localization fastapi',
     packages=find_packages(include=("fastapi_localization", "fastapi_localization.*")),
     long_description=get_long_description(),
+    long_description_content_type="text/markdown",
     zip_safe=False,
     install_requires="fastapi",
     python_requires=">=3.7",
