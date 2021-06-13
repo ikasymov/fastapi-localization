@@ -14,4 +14,3 @@ async def test_set_gettext_to_request_state(mocked_request):
 
     assert callable(request.state.gettext)
     assert request.state.gettext == gettext.gettext
-

@@ -55,7 +55,7 @@ def test_prepare_content_translate_named_format(gettext_func):
 
     expected_result = [
         {'message': f'Это сообщение для {username}'},
-        {'message': f'Это сообщение для {username}'}
+        {'message': f'Это сообщение для {username}'},
     ]
     result = prepare_content_to_translate(content, _)
     assert result == expected_result
@@ -68,6 +68,3 @@ def test_prepare_content_called_gettext():
     mock = MagicMock()
     prepare_content_to_translate(content, mock)
     assert mock.call_count == 2
-
-
-

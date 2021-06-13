@@ -16,3 +16,4 @@ exclude =
     __pycache__,
     */tests/*,
     venv/*,
+    build/*,

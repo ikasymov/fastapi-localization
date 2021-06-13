@@ -8,10 +8,11 @@ class SystemLocalizationMiddleware:
     Middleware that creates gettext.GNUTranslations.gettext by Accept-Language
     and save to request.state.
     """
+
     def __init__(
             self,
             domain: str,
-            translation_dir: str
+            translation_dir: str,
     ):
         self.translation_dir = translation_dir
         self.domain = domain
@@ -24,10 +25,8 @@ class SystemLocalizationMiddleware:
         request.state.gettext = get_gettext(
             self.domain,
             self.translation_dir,
-            language_code
+            language_code,
         )
 
         response = await call_next(request)
         return response
-
-
