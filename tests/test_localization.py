@@ -1,11 +1,12 @@
 from unittest.mock import MagicMock
 
 from fastapi_localization.localization import (
+    lazy_gettext,
     LazyString,
-    TranslatableStringField,
     prepare_content_to_translate,
-    lazy_gettext
+    TranslatableStringField,
 )
+
 
 my_string = 'my message'
 username = 'SomeUser'

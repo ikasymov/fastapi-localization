@@ -1,6 +1,6 @@
 from setuptools import (
-      setup,
-      find_packages,
+    find_packages,
+    setup,
 )
 
 import fastapi_localization

@@ -1,12 +1,14 @@
 import json
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from fastapi_localization import SystemLocalizationMiddleware
-from fastapi_localization.route import LocalizationRoute
-from fastapi_localization.response import TranslateJsonResponse
 from fastapi_localization.localization import lazy_gettext as _
+from fastapi_localization.response import TranslateJsonResponse
+from fastapi_localization.route import LocalizationRoute
+
 
 app = FastAPI()
 client = TestClient(app)

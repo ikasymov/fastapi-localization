@@ -1,0 +1,116 @@
+default_language_version:
+    python: python3.7
+
+
+default_stages: [commit, push]
+
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: pretty-format-json
+        args: [
+          --autofix,
+          --indent 4,
+        ]
+      - id: trailing-whitespace
+      - id: no-commit-to-branch
+        args: [
+          --branch, develop,
+          --branch, master,
+        ]
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.11.0
+    hooks:
+      - id: pyupgrade
+        args: [--py38-plus]
+
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        args: [
+            --in-place,
+            --remove-all-unused-imports,
+            --ignore-init-module-imports,
+            --remove-unused-variables,
+        ]
+
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.6
+    hooks:
+      - id: autopep8
+        args: [
+          --global-config=.flake8,
+          --in-place,
+        ]
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.8.0
+    hooks:
+      - id: isort
+        name: Isort
+        additional_dependencies: [toml]
+        exclude: ^.*/?setup\.py$
+        args: [
+          --sp=.isort.cfg,
+        ]
+        stages:
+          - commit
+        verbose: True
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.1.0
+    hooks:
+      - id: add-trailing-comma
+        args: [--py36-plus]
+        stages:
+          - commit
+
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.2.2
+    hooks:
+      - id: yesqa
+        additional_dependencies:
+          - flake8==3.9.0
+          - flake8-builtins==1.5.3
+          - flake8-commas==2.0.0
+          - flake8-debugger==4.0.0
+          - flake8-comprehensions==3.3.1
+          - flake8-eradicate==1.0.0
+          - dlint==0.11.0
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.9.0
+    hooks:
+      - id: flake8
+        args: [
+          --config=.flake8,
+          --max-line-length=120,
+        ]
+        exclude: .git|__pycache__
+        additional_dependencies:
+          - flake8-builtins==1.5.3
+          - flake8-commas==2.0.0
+          - flake8-debugger==4.0.0
+          - flake8-comprehensions==3.3.1
+          - flake8-eradicate==1.0.0
+          - dlint==0.11.0
+
+  - repo: https://github.com/milin/giticket
+    rev: v1.1
+    hooks:
+      - id: giticket
+        args: [
+          '--regex=[A-Za-z]+-\d+',
+          '--format=[{ticket}] {commit_msg}',
+        ]

@@ -4,8 +4,8 @@ from fastapi import (
 )
 from fastapi.exceptions import RequestValidationError
 
-from fastapi_localization.response import TranslateJsonResponse
 from fastapi_localization.localization import lazy_gettext
+from fastapi_localization.response import TranslateJsonResponse
 
 
 async def http_exception_handler(request, exc: HTTPException):
