@@ -1,5 +1,5 @@
-import typing
 import gettext
+import typing
 
 from fastapi.responses import JSONResponse
 

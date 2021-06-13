@@ -11,7 +11,7 @@ from pydantic.error_wrappers import ValidationError
 
 from fastapi_localization.exception_handlers import (
     http_exception_handler,
-    validation_exception_handler
+    validation_exception_handler,
 )
 from fastapi_localization.localization import lazy_gettext
 

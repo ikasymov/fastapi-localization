@@ -3,3 +3,7 @@
 pytest==6.2.1
 requests==2.25.1
 pytest-asyncio==0.14.0
+mypy==0.902
+isort==5.8.0
+flake8==3.9.2
+pre-commit

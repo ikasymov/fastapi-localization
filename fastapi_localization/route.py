@@ -1,7 +1,10 @@
 from typing import Callable
 
+from fastapi import (
+    Request,
+    Response,
+)
 from fastapi.routing import APIRoute
-from fastapi import Request, Response
 
 from fastapi_localization.response import TranslateJsonResponse
 
