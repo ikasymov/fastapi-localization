@@ -14,8 +14,8 @@ app = FastAPI()
 client = TestClient(app)
 app.router.route_class = LocalizationRoute
 localization_middleware = SystemLocalizationMiddleware(
-        domain='messages',
-        translation_dir='tests/translations',
+    domain='messages',
+    translation_dir='tests/translations',
 )
 app.add_middleware(BaseHTTPMiddleware, dispatch=localization_middleware)
 
@@ -23,7 +23,7 @@ app.add_middleware(BaseHTTPMiddleware, dispatch=localization_middleware)
 @app.get('/', response_class=TranslateJsonResponse)
 async def index():
     return {
-        'message': _('My page')
+        'message': _('My page'),
     }
 
 

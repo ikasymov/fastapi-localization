@@ -6,7 +6,7 @@ def test_translate_response_content(gettext_func):
     gettext = gettext_func('ru')
 
     content = {
-        'message': _('my message')
+        'message': _('my message'),
     }
     translated_content = (
         TranslateJsonResponse(content)
@@ -15,4 +15,3 @@ def test_translate_response_content(gettext_func):
     )
     expected_content = {'message': 'Мое сообщение'}
     assert translated_content == expected_content
-
